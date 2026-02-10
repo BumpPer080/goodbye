@@ -9,7 +9,29 @@ interface SpecialCardsProps {
 }
 
 const SpecialCards: React.FC<SpecialCardsProps> = ({ cards, onBack }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [likedCards, setLikedCards] = useState<Set<string>>(new Set());
+  const [floatingHearts, setFloatingHearts] = useState<{ id: number; cardId: string }[]>([]);
+
+  const toggleLike = (id: string) => {
+    setLikedCards(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+        // Add floating hearts effect
+        const heartCount = 5;
+        for (let i = 0; i < heartCount; i++) {
+          const heartId = Date.now() + i;
+          setFloatingHearts(prev => [...prev, { id: heartId, cardId: id }]);
+          setTimeout(() => {
+            setFloatingHearts(prev => prev.filter(h => h.id !== heartId));
+          }, 1000);
+        }
+      }
+      return next;
+    });
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f5f5f1] dark:bg-background-alt text-gray-900 dark:text-white transition-colors duration-300">
@@ -72,8 +94,30 @@ const SpecialCards: React.FC<SpecialCardsProps> = ({ cards, onBack }) => {
                     )}
                   </div>
                   <div className="mt-auto border-t border-black/5 pt-4 flex justify-between items-center">
-                    <span className="text-[10px] uppercase tracking-widest text-gray-400">Series: {card.series}</span>
-                    <span className={`material-symbols-outlined text-xl ${idx === 1 ? 'text-primary' : 'text-gray-300'}`}>favorite</span>
+                    <span className="text-[10px] uppercase tracking-widest text-gray-400">BumpPer: {card.series}</span>
+                    <button 
+                      onClick={() => toggleLike(card.id)}
+                      className="focus:outline-none transition-transform active:scale-125 relative"
+                    >
+                      <span className={`material-symbols-outlined text-xl transition-colors duration-300 ${likedCards.has(card.id) ? 'text-red-500 fill-current' : 'text-gray-300 hover:text-red-300'}`}>
+                        favorite
+                      </span>
+                      {floatingHearts.filter(h => h.cardId === card.id).map((h, i) => (
+                        <span
+                          key={h.id}
+                          className="material-symbols-outlined absolute text-red-500 pointer-events-none animate-float-up"
+                          style={{
+                            left: '50%',
+                            top: '50%',
+                            transform: `translate(-50%, -50%)`,
+                            animationDelay: `${i * 0.1}s`,
+                            fontSize: `${Math.random() * 20 + 10}px`
+                          }}
+                        >
+                          favorite
+                        </span>
+                      ))}
+                    </button>
                   </div>
                 </div>
               </div>
