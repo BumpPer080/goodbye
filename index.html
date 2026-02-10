@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goodbye Bostech</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&family=Arvo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ea2a33",
+              "background-dark": "#110808",
+              "background-alt": "#141414",
+              "card-cream": "#f3e5ca",
+            },
+            fontFamily: {
+              display: ["Spline Sans", "sans-serif"],
+              serif: ["Arvo", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Spline Sans", sans-serif;
+        background-color: #110808;
+        color: white;
+        margin: 0;
+        overflow-x: hidden;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 48;
+      }
+      .cinematic-blur {
+        backdrop-filter: blur(12px) brightness(0.4);
+        -webkit-backdrop-filter: blur(12px) brightness(0.4);
+      }
+      .pin-input:focus {
+        border-color: #df6e12ef !important;
+        box-shadow: 0 0 0 1px #df6e12ef !important;
+        outline: none !important;
+      }
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-150%) skewX(-25deg);
+        }
+        100% {
+          transform: translateX(150%) skewX(-25deg);
+        }
+      }
+      .shimmer-effect {
+        position: relative;
+        overflow: hidden;
+      }
+      .shimmer-effect::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        animation: shimmer 3s infinite;
+      }
+      /* Custom Animations */
+      @keyframes wiggle {
+        0%, 100% { transform: rotate(-12deg); }
+        50% { transform: rotate(12deg); }
+      }
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+      }
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes bounce-custom {
+        0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+        50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+      }
+      
+      .animate-wiggle {
+        display: block !important;
+        animation: wiggle 1s ease-in-out infinite !important;
+        transform-origin: center bottom;
+      }
+      .animate-shake {
+        display: block !important;
+        animation: shake 0.5s ease-in-out infinite !important;
+      }
+      .animate-spin-slow {
+        display: block !important;
+        animation: spin 3s linear infinite !important;
+      }
+      .animate-bounce-custom {
+        display: block !important;
+        animation: bounce-custom 1s infinite !important;
+      }
+      
+      /* Tailwind override for pulse to ensure it works on spans if needed */
+      .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "react/": "https://esm.sh/react@^19.2.4/",
+          "react": "https://esm.sh/react@^19.2.4",
+          "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
