@@ -50,7 +50,7 @@ const SpecialCards: React.FC<SpecialCardsProps> = ({ cards, onBack }) => {
           <img 
             alt="background texture" 
             className="w-full h-full object-cover" 
-            src="/imgs/ceoroom.JPG"
+            src="/imgs/ceoroom.jpg"
           />
         </div>
         <SnowBackground />

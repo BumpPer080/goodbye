@@ -16,7 +16,7 @@ const WelcomeBack: React.FC<WelcomeBackProps> = ({ profile, onStart, onSwitch })
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/imgs/chair.JPG" 
+          src="/imgs/chair.jpg" 
           alt="Chair Background" 
           className="w-full h-full object-cover brightness-[0.25]"
         />
