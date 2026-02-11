@@ -14,7 +14,7 @@ export const PROFILES: Profile[] = [
         type: 'illustration',
         title: 'Thank you for everything.',
         series: 'Team Memories',
-        imageUrl: 'src=https://photos.app.goo.gl/7LCW7VK4PMWjdfxR8',
+        imageUrl: "/imgs/b1.jpg",
         bgColor: 'bg-card-cream'
       },
       {
