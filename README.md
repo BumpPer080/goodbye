@@ -2,7 +2,7 @@
 
 A heartfelt farewell web application designed for the Bostech team. This interactive experience allows team members to unlock personalized messages and memories.
 
-![Chair](./imgs/chair.JPG)
+![Chair](./public/imgs/chair.jpg)
 
 ## Features
 
